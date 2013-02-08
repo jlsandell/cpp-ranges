@@ -83,7 +83,7 @@ public:
 	{
 		Iterator copy(*this);
 		++(*this);
-		return ++copy;
+		return copy;
 	}
 
 	int operator*() {
@@ -124,7 +124,7 @@ public:
 	{
 		Iterator copy(*this);
 		++(*this);
-		return ++copy;
+		return copy;
 	}
 
 	int operator*() {
@@ -169,7 +169,7 @@ public:
 	{
 		Iterator copy(*this);
 		++(*this);
-		return ++copy;
+		return copy;
 	}
 
 	int operator*() {
@@ -215,7 +215,7 @@ public:
 	{
 		Iterator copy(*this);
 		++(*this);
-		return ++copy;
+		return copy;
 	}
 
 	int operator*() {

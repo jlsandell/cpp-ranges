@@ -37,7 +37,7 @@ XRange::iterator XRange::iterator::operator ++(int)
 {
 	iterator copy(*this);
 	++(*this);
-	return ++copy;
+	return copy;
 }
 
 XRange::iterator& XRange::iterator::operator +=(unsigned n)
