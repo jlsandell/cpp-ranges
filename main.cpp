@@ -226,9 +226,9 @@ int main(int argc, char *argv[])
 
 	basic_test_range();
 
-//	test_range<1,10000000,2>();
-//	test_range<1,100000000,2>();
-//	test_range<1,1000000000,2>();
+	test_range<1,10000000,2>();
+	test_range<1,100000000,2>();
+	test_range<1,1000000000,2>();
 
 	basic_test_xrange();
 
