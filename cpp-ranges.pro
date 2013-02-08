@@ -24,4 +24,5 @@ HEADERS += \
     XRange.hpp \
     Timer.hpp
 
-OTHER_FILES +=
+OTHER_FILES += \
+    LICENSE.txt
