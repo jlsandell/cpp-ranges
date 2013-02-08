@@ -10,7 +10,7 @@ XRange::XRange(int begin, int end, unsigned step)
 {
 	char direction = begin < end ? 1 : -1;
 	_end = (((end - begin)/(int)step) + direction)*(int)step + begin;
-	_step = begin < end ? step : -step;
+	_step = direction * (int) step;
 }
 
 bool operator ==(const XRange::iterator& lhs, const XRange::iterator&rhs)
