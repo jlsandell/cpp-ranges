@@ -5,8 +5,6 @@
 #define RANGE_HPP
 
 #include <iterator>
-#include <iostream>
-
 
 namespace RG {
 

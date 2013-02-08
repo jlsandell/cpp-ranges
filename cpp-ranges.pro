@@ -16,7 +16,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    Range.cpp
+    Range.cpp \
+    XRange.cpp
 
 HEADERS += \
-    Range.hpp
+    Range.hpp \
+    XRange.hpp \
+    Timer.hpp
+
+OTHER_FILES +=
