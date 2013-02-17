@@ -11,6 +11,9 @@ class Timer {
 public:
 	typedef typename std::chrono::time_point<Clock_t> time_type;
 
+	Timer() :
+		_state(State::READY) {}
+
 	void start() {
 		if (_state == State::READY) {
 			_start = Clock_t::now();
@@ -40,7 +43,7 @@ private:
 
 	time_type _start;
 	time_type _stop;
-	State _state = State::READY;
+	State _state;
 };
 
 #endif // TIMER_HPP

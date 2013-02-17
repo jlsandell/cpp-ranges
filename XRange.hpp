@@ -5,48 +5,99 @@
 #define XRANGE_HPP
 
 #include <iterator>
+#include <stdexcept>
 
 namespace RG {
 
+template<class T = int>
 class XRange
 {
 public:
-	XRange(int begin, int end, unsigned step = 1);
+	XRange(T begin, T end, T step = 1)
+		: _begin(begin)
+	{
+		if (step <= 0) throw(std::invalid_argument("Error, the step must be "
+												   "greater than or equal to zero"));
+
+		char direction = begin < end ? 1 : -1;
+		_end = (((end - begin)/step) + direction)*step + begin;
+		_step = direction * step;
+	}
 
 	class iterator : public std::iterator<std::forward_iterator_tag,int> {
 	public:
-		iterator(int value, int step);
+		iterator(T value, T step)
+			: _value(value),
+			  _step(step) {}
 
-		friend bool operator==(const iterator& lhs, const iterator& rhs);
-		friend bool operator!=(const iterator& lhs, const iterator& rhs);
+		friend bool operator==(const iterator& lhs, const iterator& rhs)
+		{
+			return lhs._step == rhs._step && lhs._value == rhs._value;
+		}
 
-		iterator& operator++();
-		iterator operator++(int);
+		friend bool operator!=(const iterator& lhs, const iterator& rhs)
+		{
+			return !(lhs == rhs);
+		}
 
-		iterator& operator+=(unsigned);
+		iterator& operator++()
+		{
+			_value += _step;
+			return *this;
+		}
 
-		int operator*() const;
+		iterator operator++(int)
+		{
+			iterator copy(*this);
+			++(*this);
+			return copy;
+		}
+
+		iterator& operator+=(unsigned n)
+		{
+			_value += n * _step;
+			return (*this);
+		}
+
+		T operator*() const
+		{
+			return _value;
+		}
 
 	private:
-		int _value;
-		int _step;
+		T _value;
+		T _step;
 	};
 	typedef const iterator const_iterator;
 
-	iterator begin();
-	const_iterator begin() const;
+	iterator begin()
+	{
+		return iterator(_begin,_step);
+	}
 
-	iterator end();
-	const_iterator end() const;
+	const_iterator begin() const
+	{
+		return iterator(_begin,_step);
+	}
 
-	int get_begin() const;
-	int get_end() const;
-	int get_step() const;
+	iterator end()
+	{
+		return iterator(_end,_step);
+	}
+
+	const_iterator end() const
+	{
+		return iterator(_end,_step);
+	}
+
+	T get_begin() const { return _begin;}
+	T get_end() const {return _end;}
+	T get_step() const {return _step;}
 
 private:
-	int _begin;
-	int _end;
-	int _step;
+	T _begin;
+	T _end;
+	T _step;
 };
 
 }
