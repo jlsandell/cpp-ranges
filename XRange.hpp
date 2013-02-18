@@ -6,6 +6,7 @@
 
 #include <iterator>
 #include <stdexcept>
+#include <type_traits>
 
 namespace RG {
 
@@ -13,7 +14,7 @@ template<class T = int>
 class XRange
 {
 public:
-	XRange(T begin, T end, T step = 1)
+	XRange(T begin, T end, typename std::enable_if<std::is_integral<T>::value, T>::type step = 1)
 		: _begin(begin)
 	{
 		if (step <= 0) throw(std::invalid_argument("Error, the step must be "
@@ -30,7 +31,8 @@ public:
 			: _value(value),
 			  _step(step) {}
 
-		friend bool operator==(const iterator& lhs, const iterator& rhs)
+
+		friend bool	operator==(const iterator& lhs, const iterator& rhs)
 		{
 			return lhs._step == rhs._step && lhs._value == rhs._value;
 		}

@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
 	test_xrange(1,100000000,7);
 	test_xrange(1,1000000000,7);
 
-	test_xrange<float>(1,1020034.33,2.5);
+//	test_xrange<float>(1,1020034.33,2.5);
 
 	output.flush();
 
